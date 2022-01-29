@@ -2,8 +2,8 @@
 
 * {
 	font-family: "ヒラギノ角ゴ ProN";
+	box-sizing: border-box;
 }
-
 
 
 header {
@@ -114,7 +114,7 @@ nav ul li a {
 	padding: 15px;
 }
 
-.test p span, .traning p span{
+.test p span, .traning p span {
 	font-weight: 700;
 }
 
@@ -144,7 +144,7 @@ nav ul li a {
 
 .recruit {
 	background: linear-gradient();
-	height: 483px;
+	height: 575px;
 	background-color: thistle;
 	text-align: center;
 
@@ -156,7 +156,7 @@ nav ul li a {
   background-size    : 14px 14px;
 }
 
-.recruit h2 {
+.recruit h2, .info h2, .classroom h2 {
 	color: #333;
 	font-size: 29px;
 	line-height: 40px;
@@ -164,11 +164,11 @@ nav ul li a {
 	padding-top: 50px;
 }
 
-.text{
+.recruit-text{
 	margin-top: 30px;
 }
 
-.wrapper {
+.wrapper, .info-wrapper {
 	display: flex;
 	flex-flow: column;
 	justify-content: center;
@@ -181,27 +181,225 @@ nav ul li a {
 	height: 70px;
 	width: 1100px;
 	background-color: #fff;
+	position: relative;
+
 }
 
 .kashiwa p, .tsudanuma p {
 	text-align: left;
-	padding: 9.6px 0 0 20px;
+	padding: 10px 0 0 20px;
 }
 
 
-.kashiwa span, .tsudanuma span {
+.kashiwa span, .tsudanuma span, .news span {
 	color: #68ce2e;
 	font-size: 13px;
 	line-height: 22px;
 	font-weight: 400;
 }
 
-
-
-
-
-.recruit a {
+.main-button {
 	margin-top: 30px;
+	display: inline-block;
+	color: #68ce2e;
+	border: 1px solid #68ce2e;
+	padding: 8.4px 10px;
+	font-size: 14px;
+	line-height: 21px;
+	width: 129px;
+	border-radius: 4px;
+	position: relative;
+	text-align: center;
+}
+
+/* 森本メモ
+.main-buttonの「テキスト＆ ▶︎」を、
+中央よせにして表示させたい
+*/
+
+
+.main-button::after{
+	content: url(/img/arrow.png);
+	position: absolute;
+	right: 16px;
+}
+
+
+.info {
+	height: 420px;
+	text-align: center;
+}
+
+.info-wrapper {
+	border: 1px solid rgb(202, 202, 202);
+	width: 1100px;
+	margin: 0 auto;
+	height: 208px;
+	margin-top: 30px;
+}
+
+.news {
+	height: 70px;
+	width: 1068px;
+	position: relative;
+}
+
+.news p {
+	text-align: left;
+	padding: 10px 0 0 2px;
+}
+
+/* 森本メモ （218行目、227行目）
+本当は .newsの widthを1100pxにしたいけど
+.info-wrapperのボーダーが1pxずつあるから
+.newsの幅を「1100px」→「1098px」に、2px減らした。
+.info-wrapperにborder-sizing: border-boxを使えばいいのかと思ったが
+うまくできなかった 
+↓  
+ー解決ずみー
+* {
+	box-sizing: border-box;
+} の書き方をどこかで誤っていたみたい */
+
+.kashiwa p::before, .tsudanuma p::before, .news p::before  {
+	content: url(/img/arrow.png);
+	vertical-align: middle;
+	position: absolute;
+	top: 26px;
+	right: 20px;
+}
+
+.news:first-child,.news:nth-child(2) {
+	border-bottom: 1px solid rgb(202, 202, 202);
+}
+
+.news p span {
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.classroom {
+	background: linear-gradient();
+	height: 750px;
+	text-align: center;
+}
+
+.classroom-back{
+	/* ドット生成ツールを使用 https://webparts.cman.jp/box/dot/ */
+  background-color   : #ffffff;
+  background-image   : radial-gradient(#b0f039 7%, transparent 10%),
+                       radial-gradient(#c2f563 7%, transparent 10%);
+  background-position: 0 0, 5px 5px;
+  background-size    : 14px 14px;
+	height: 700px;
+}
+
+.classroom-wrapper {
+	display: flex;
+  margin: 0 auto;
+	margin-top: 50px;
+	width: 1110px;
+}
+
+.tsudanuma-school, .kashiwa-school, .tokyo-school {
+	width: 33%;
+	text-align: left;
+	width : -webkit-calc(100% / 3) ;
+  width : calc(100% / 3) ;
+}
+
+.tsudanuma-school, .kashiwa-school {
+	padding-right: 30px;
+}
+
+iframe {
+	width: 100%;
+}
+
+.tsudanuma-school p, .kashiwa-school p, .tokyo-school p {
+	margin-bottom: 30px;
+}
+
+.tsudanuma-school p span, .kashiwa-school p span, .tokyo-school p span {
+	font-weight: bold;
+	margin-bottom: 8px;
 	display: inline-block;
 }
 
+.tsudanuma-school .access, .kashiwa-school .access, .tokyo-school .access {
+	margin-top: 30px;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #787878;
+}
+
+footer {
+	height: 348px;
+	border-top: 4px solid #68CE2E;
+	background-color: #e2fbd1
+}
+
+.footer-nav {
+	display: flex;
+	margin: 0 auto;
+	width: 1110px;
+	margin-top: 42px;
+}
+
+.nav-left, .nav-center, .nav-right {
+	width: 100%;
+}
+
+/* 森本メモ
+footer-navは、空のdiv（.nav-right）を使用して
+作っているけどこれはありなのか？ */
+
+.nav-left li, .nav-center li {
+	width: 330px;
+	height: 35.78px;
+	border-bottom: 1px solid rgb(221, 220, 220);
+	padding: 8px 0 0 11px;
+}
+
+.nav-left li:hover, .nav-center li:hover {
+	background-color: rgba(0,0,0,0.02);
+}
+
+.nav-left li a, .nav-center li a {
+	display: block;
+	/* background-color: tomato; */
+}
+
+.nav-left li a:hover , .nav-center li a:hover {
+	color: #1e73be;
+}
+
+
+
+.nav-left li:nth-child(1) {
+	background-color: rgba(0,0,0,0.02);
+}
+
+
+
+.footer-nav li a {
+	font-size: 12px;
+	line-height: 20px;
+	color: #666;
+	font-weight: 400;
+}
+
+.nav-right {
+	width: 330px;
+	height: 35.78px;
+}
+
+.copy-right {
+	text-align: center;
+	font-size: 12px;
+	line-height: 20px;
+	color: #333;
+	font-weight: 400;
+	margin-top: 45px;
+}
